@@ -5,9 +5,9 @@ import Cookies from "js-cookie";
 
 // PAGES A IMPORTER
 import Home from "./pages/Home";
-import ComicsList from "./pages/ComicsList";
-import CaracterInfo from "./pages/CaracterInfo";
-import CaracterList from "./pages/CaracterList";
+import Comics from "./pages/Comics";
+// import CaracterInfo from "./pages/CaracterInfo";
+import Characters from "./pages/Characters";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 
@@ -48,9 +48,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/login" element={<Login handleToken={handleToken} />} />
-        <Route path="/ComicsList" element={<ComicsList />} />
-        <Route path="/CaracterList" element={<CaracterList />} />
-        <Route path="/CaracterInfo" element={<CaracterInfo />} />
+        <Route path="/Comics" element={<Comics />} />
+        <Route path="/Characters" element={<Characters />} />
+        {/* <Route path="/CaracterInfo" element={<CaracterInfo />} /> */}
         {/* CARACTERE ":" INDIQUE QUE NOTRE PATH CONTIENT UN PARAMETRE DYNAMIQUE ID
         <Route path="/offer/:id" element={<Offer token/>} /> */}
       </Routes>

@@ -13,6 +13,7 @@ const Header = ({ handleToken, token, search, setSearch }) => {
       {/* SI TOKEN ON AFFICHE BOUTON DECONNECTE, SINON S'INSCRIRE ET SE CONNECTER */}
       {token ? (
         <button
+          className="header"
           onClick={() => {
             // ON SUPPRIME LE COOKIE (Cookies.remove("token-vinted");)
             handleToken(null);
@@ -36,16 +37,17 @@ const Header = ({ handleToken, token, search, setSearch }) => {
           {/* // STYLE INLINE POUR LES BOUTONS */}
           {/* BARRE DE RECHERCHE SUR MOT CLE */}
           <input
+            className="searchButton"
             style={{
-              background: "#f5f6f7",
-              color: "lightgrey",
-              borderColor: "lightgrey",
-              textAlign: "left",
+              background: "white",
+              backgroundColor: "lightgray",
+              color: "black",
+              fontSize: 15,
               borderRadius: 5,
-              marginLeft: 10,
-              minWidth: 500,
-              height: 30,
-              marginRight: 40,
+              width: 350,
+              padding: "10px",
+              marginLeft: 30,
+              marginRight: 30,
             }}
             // ON RECUPERE LA VALEUR AFFICHÉE
             value={search}
@@ -58,51 +60,15 @@ const Header = ({ handleToken, token, search, setSearch }) => {
           {/* // SI TOKEN OK CONNECT */}
           <Link to={token ? "/Publish" : "/login"}>
             {/* <Link to={"/Publish"}> */}
-            <button
-              style={{
-                background: "red",
-                borderColor: "red",
-                height: 30,
-                color: "white",
-                fontSize: 12,
-                borderRadius: 5,
-                marginLeft: 10,
-              }}
-            >
-              Documentation
-            </button>
+            <button className="descriptionButton">Description</button>
           </Link>{" "}
           {/* Recherche des articles
             </button> */}
           <Link to="/signup">
-            <button
-              style={{
-                borderColor: "#007580",
-                background: "white",
-                height: 30,
-                color: "#007580",
-                fontSize: 12,
-                borderRadius: 5,
-                minWidth: 100,
-              }}
-            >
-              S'inscrire
-            </button>
+            <button className="otherButton">S'inscrire</button>
           </Link>
           <Link to="/login">
-            <button
-              style={{
-                borderColor: "#007580",
-                background: "white",
-                height: 30,
-                color: "#007580",
-                fontSize: 12,
-                borderRadius: 5,
-                minWidth: 100,
-              }}
-            >
-              Se connecter
-            </button>
+            <button className="otherButton">Se connecter</button>
           </Link>
         </>
       )}

@@ -2,6 +2,38 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
+}
+.otherButton {
+  background: white;
+  color: black;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 5px;
+  width: 120px;
+  margin-right: 5px;
+}
+
+.descriptionButton {
+  background: #ee231f;
+  height: 40px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 5px;
+  width: 120px;
+  margin-left: 40px;
+  margin-right: 60px;
+}
+.searchButton {
+  background: white;
+  background-color: lightgray;
+  color: black;
+  font-size: 15px;
+  border-radius: 5px;
+  width: 350px;
+  padding: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
 }

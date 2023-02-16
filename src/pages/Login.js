@@ -11,13 +11,10 @@ const Login = ({ handleToken }) => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const response = await axios.post("http//localhost/3000/user/login", {
+        email: email,
+        password: password,
+      });
       console.log(response.data);
       if (response.data.token) {
         // Cookies.set("token-vinted", response.data.token, { expires: 14 });
@@ -35,23 +32,46 @@ const Login = ({ handleToken }) => {
       // STYLE INLINE POUR LE FORMULAIRE
       style={{
         display: "flex",
+        backgroundColor: "black",
+        justifyContent: "center",
+        alignItems: "center",
         flexDirection: "column",
-        aligncontent: "center",
-        width: "100vw",
-        height: "50vh",
+        height: "100hw",
       }}
     >
       <form
         style={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           flexDirection: "column",
+          backgroundColor: "black",
+          aligncontent: "center",
+          width: "30vw",
+          height: "50vh",
+          marginBottom: "20px",
+          marginTop: "10px",
         }}
         onSubmit={handleLogin}
       >
-        <h1 style={{ fontsize: "22", marginBottom: "20" }}>Se Connecter</h1>
+        <h1
+          style={{
+            marginBottom: "40px",
+            color: "white",
+            justifyContent: "center",
+            fontSize: "25px",
+            fontFamily: "roboto",
+            alignItems: "center",
+            borderRadius: "5px",
+          }}
+        >
+          Se Connecter
+        </h1>
         <input
+          style={{
+            marginBottom: "10px",
+            backgroundColor: "lightgray",
+            padding: "10px",
+            borderRadius: "5px",
+          }}
           value={email}
           type="email"
           placeholder="Email"
@@ -61,6 +81,12 @@ const Login = ({ handleToken }) => {
           }}
         />
         <input
+          style={{
+            marginBottom: "10px",
+            backgroundColor: "lightgray",
+            padding: "10px",
+            borderRadius: "5px",
+          }}
           value={password}
           type="password"
           placeholder="Mot de passe"
@@ -68,9 +94,29 @@ const Login = ({ handleToken }) => {
             setPassword(event.target.value);
           }}
         />
-        <input type="submit" value="Se connecter" />
+        <input
+          style={{
+            marginBottom: "30px",
+            backgroundColor: "#ee231f",
+            fontSize: "15px",
+            fontWeight: "bold",
+            padding: "10px",
+            borderRadius: "5px",
+          }}
+          type="submit"
+          value="Valider"
+        />
         {/* // RE-DIRIGE A LA PAGE SIGNUP */}
-        <Link to="/signup">Pas encore de compte ? Inscris-toi</Link>
+        <Link
+          style={{
+            color: "white",
+            fontSize: "22px",
+            padding: "10px",
+          }}
+          to="/signup"
+        >
+          Pas encore de compte ? ... Inscris-toi
+        </Link>
       </form>
     </div>
   );
