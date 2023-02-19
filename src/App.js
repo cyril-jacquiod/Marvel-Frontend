@@ -5,14 +5,14 @@ import Cookies from "js-cookie";
 
 // PAGES A IMPORTER
 import Home from "./pages/Home";
-import Comics from "./pages/Comics";
-// import CaracterInfo from "./pages/CaracterInfo";
-import Characters from "./pages/Characters";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Comics from "./pages/Comics";
+import Characters from "./pages/Characters";
 
-// APPEL DU HEADER POUR TOUTES LES PAGES
+// APPEL HEADER & FOOTER POUR TOUTES LES PAGES
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   // STATE POUR STOCKER VALEUR DE RECHERCHE
@@ -34,7 +34,6 @@ function App() {
       Cookies.remove("token-Marvel");
     }
   };
-
   return (
     <Router>
       <Header
@@ -46,14 +45,14 @@ function App() {
       <Routes>
         {/* ROUTES FAISANT APPEL AUX COMPOSANTS (PAGES OU CONTAINERS) DES PROPS ELEMENT "HOME" "OFFER" "SIGNUP" */}
         <Route path="/" element={<Home />} />
-        <Route path="/signUp" element={<SignUp />} />
-        <Route path="/login" element={<Login handleToken={handleToken} />} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/Login" element={<Login handleToken={handleToken} />} />
         <Route path="/Comics" element={<Comics />} />
         <Route path="/Characters" element={<Characters />} />
-        {/* <Route path="/CaracterInfo" element={<CaracterInfo />} /> */}
         {/* CARACTERE ":" INDIQUE QUE NOTRE PATH CONTIENT UN PARAMETRE DYNAMIQUE ID
-        <Route path="/offer/:id" element={<Offer token/>} /> */}
+        <Route path="/Characters/:id" element={<Characters token/>} /> */}
       </Routes>
+      <Footer>Made by Cyril at LeReacteur</Footer>
     </Router>
   );
 }

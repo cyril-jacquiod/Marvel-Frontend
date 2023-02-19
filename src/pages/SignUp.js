@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+
 // ATTENTION .v2
 // const cloudinary = require("cloudinary").v2;
 
-const Signup = ({ handleToken }) => {
+const SignUp = ({ handleToken }) => {
   // STATE QUI GERENT LES INPUTS DU FORMULAIRE SIGNUP
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,15 +20,16 @@ const Signup = ({ handleToken }) => {
   // SOUMISSION DU FORMULAIRE SANS RAFFRAICHISSEMENT
   const handleSignup = async (event) => {
     event.preventDefault();
-    // SUPRESSION DU MESSAGE D'ERREUR
+    // SUPRESSION DU MESSAGE D'ERREUR - METTRE VIDE
     setErrorMessage("");
     try {
       // REQUETE AXIOS
-      const response = await axios.post("http//localhost:3000/user/signup", {
+      const response = await axios.post("http//localhost:3000/User/SignUp", {
         email: email,
         username: username,
         password: password,
       });
+
       // SI TOKEN GENERE ET STOCKE DANS APP.JS
       if (response.data.token) {
         // J'ENREGISTRE MON STATE ET MES COOKIES
@@ -78,11 +80,12 @@ const Signup = ({ handleToken }) => {
           marginTop: "10px",
         }}
         // APPELEE LORS DE LA SOUMISSION DU FORMULAIRE
-        onSubmit={handleSignup}
+        onsubmit={handleSignup}
         // onsubmit={{event}} voir correction
       >
-        <h1
+        <h2
           style={{
+            marginTop: "80px",
             marginBottom: "40px",
             color: "white",
             justifyContent: "center",
@@ -93,7 +96,7 @@ const Signup = ({ handleToken }) => {
           }}
         >
           S'incrire
-        </h1>
+        </h2>
         <input
           style={{
             marginBottom: "10px",
@@ -168,4 +171,4 @@ const Signup = ({ handleToken }) => {
   );
 };
 
-export default Signup;
+export default SignUp;

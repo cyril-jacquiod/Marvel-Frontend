@@ -2,18 +2,13 @@ import "./Header.css";
 import logo from "../components/Logo.png";
 import { Link } from "react-router-dom";
 
-const Header = ({ handleToken, token, search, setSearch }) => {
+const Header = ({ handleToken, token }) => {
   return (
-    <header
-      style={{
-        backgroundColor: "black",
-        height: "200px",
-      }}
-    >
+    <header>
       {/* SI TOKEN ON AFFICHE BOUTON DECONNECTE, SINON S'INSCRIRE ET SE CONNECTER */}
       {token ? (
         <button
-          className="header"
+          className="container"
           onClick={() => {
             // ON SUPPRIME LE COOKIE (Cookies.remove("token-vinted");)
             handleToken(null);
@@ -26,50 +21,30 @@ const Header = ({ handleToken, token, search, setSearch }) => {
           <span>
             <img
               src={logo}
-              alt="logo vinted"
+              alt="logo Marvel"
               style={{
-                blockSize: 150,
-                marginRight: 40,
-                alignItems: "bottom",
+                blockSize: 180,
+                marginRight: 300,
+                marginTop: 20,
+                marginLeft: 20,
               }}
             />
+            <Link to="/signup">
+              <button className="otherButton">S'inscrire</button>
+            </Link>
+            <Link to="/login">
+              <button className="otherButton">Se connecter</button>
+            </Link>
           </span>
-          {/* // STYLE INLINE POUR LES BOUTONS */}
-          {/* BARRE DE RECHERCHE SUR MOT CLE */}
-          <input
-            className="searchButton"
-            style={{
-              background: "white",
-              backgroundColor: "lightgray",
-              color: "black",
-              fontSize: 15,
-              borderRadius: 5,
-              width: 350,
-              padding: "10px",
-              marginLeft: 30,
-              marginRight: 30,
-            }}
-            // ON RECUPERE LA VALEUR AFFICHÉE
-            value={search}
-            type="text"
-            placeholder="Rechercher des articles"
-            onChange={(event) => {
-              setSearch(event.target.value);
-            }}
-          />
-          {/* // SI TOKEN OK CONNECT */}
-          <Link to={token ? "/Publish" : "/login"}>
-            {/* <Link to={"/Publish"}> */}
-            <button className="descriptionButton">Description</button>
-          </Link>{" "}
-          {/* Recherche des articles
-            </button> */}
-          <Link to="/signup">
-            <button className="otherButton">S'inscrire</button>
-          </Link>
-          <Link to="/login">
-            <button className="otherButton">Se connecter</button>
-          </Link>
+          <div>
+            {/* // SI TOKEN OK CONNECT */}
+            <Link to={token ? "/Comics" : "/SignUp"}>
+              <button className="description">Comics</button>
+            </Link>
+            <Link to={"/Characters"}>
+              <button className="description">Characters</button>
+            </Link>
+          </div>
         </>
       )}
     </header>

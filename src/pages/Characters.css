@@ -1,0 +1,28 @@
+.searchButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background-color: white;
+  font-size: 17px;
+  border-radius: 5px;
+  padding: 10px;
+  background: "white";
+  border-radius: 5px;
+  width: 500px;
+  padding: 10px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+/* SCROLL LES IMAGES*/
+.container {
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* BLOQUE LE DEFILEMENT */
+.container::-webkit-scrollbar {
+  display: none;
+}

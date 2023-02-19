@@ -6,7 +6,7 @@ const router = express.Router();
 
 const User = require("../models/User");
 
-router.post("/user/signup", async (req, res) => {
+router.post("/User/SignUp", async (req, res) => {
   try {
     // VERIFICTION : console.log(req.body);
 
@@ -82,4 +82,4 @@ router.post("/user/login", async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = User;

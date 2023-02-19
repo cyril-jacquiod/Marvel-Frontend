@@ -11,7 +11,7 @@ const Login = ({ handleToken }) => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http//localhost/3000/user/login", {
+      const response = await axios.post("http//localhost/3000/User/Login", {
         email: email,
         password: password,
       });
@@ -52,8 +52,9 @@ const Login = ({ handleToken }) => {
         }}
         onSubmit={handleLogin}
       >
-        <h1
+        <h2
           style={{
+            marginTop: "80px",
             marginBottom: "40px",
             color: "white",
             justifyContent: "center",
@@ -64,7 +65,7 @@ const Login = ({ handleToken }) => {
           }}
         >
           Se Connecter
-        </h1>
+        </h2>
         <input
           style={{
             marginBottom: "10px",

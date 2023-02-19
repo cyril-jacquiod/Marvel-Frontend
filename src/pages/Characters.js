@@ -1,48 +1,75 @@
+import "./Characters.css";
+
+// STOCKAGE DATA
 import { useState, useEffect } from "react";
+// UTILISATION DES ROUTES
 import axios from "axios";
 
-const Characters = () => {
+const Characters = ({ search, setSearch }) => {
   // FUNCTION STATE POUR STOCKAGE
   const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState();
+  // SETISLOADING PAR DEFAUT : TRUE
+  const [isLoading, setIsLoading] = useState(true);
 
-  // CETTE REQUETE : LISTE DES CHARACTERS "THUMBNAIL"
+  // CETTE REQUETE : LISTE DES COMICS PAR "THUMBNAIL" = URL(PATH) + EXTENSION(.JPG)
   useEffect(() => {
-    // DECLARATION DE FONCTION FAISANT LA REQUETE VIA UNE AUTRE FONCTION (FCT USEEFFECT PAS ASYNC)
+    // DECLARATION FONCTION ASYNC FAISANT REQUETE (FONCTION USEEFFECT PAS ASYNC)
     const fetchData = async () => {
       // TRY CATCH EN CAS DE REQUETE KO
       try {
-        // DECLARATION DE LA VARIABLE RESPONSE AVEC CLE RECHERCHE TITLE FONCTIONNE PAS
+        // DECLARATION DE LA VARIABLE RESPONSE AVEC CLE ID
         const response = await axios.get("http://localhost:3000/Characters");
-        // VERIFICATION AVEC console.log(response.data);
+        // VERIFICATION AVEC console.log(response.data); OK AVEC BDD
         // STOCKAGE DU RESULTAT DANS DATA
         setData(response.data);
-        // METTRE ISLOADING A FALSE
+        // CHARGEMENT OK : ISLOADING FALSE
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
       }
     };
+    // RECUPERATION DATA
     fetchData();
   }, []);
+  // CHARGEMENT ENCOURS : ISLOADING TRUE + MESSAGE LOADING
+
   return isLoading ? (
     <p>Loading ...</p>
   ) : (
     <div>
+      <div>
+        {/* BARRE DE RECHERCHE SUR MOT CLE */}
+        <input
+          className="searchButton"
+          // ON RECUPERE LA VALEUR AFFICHÉE
+          value={search}
+          type="text"
+          placeholder="Recherche ..."
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
+      </div>
       {/* RECUPERATION DU DATA VIA LA CLE ID SOUS FORME DE TABLEAU PAR CARACTER */}
-      {data.results.map((character) => {
-        return (
-          <article key={character._id}>
-            <p>{character.name}</p>
-            <img
-              src={
-                character.thumbnail.path + "." + character.thumbnail.extension
-              }
-              alt="character"
-            />
-          </article>
-        );
-      })}
+      <div classname="container">
+        {data.results.map((characters) => {
+          return (
+            <div>
+              <article key={characters._id}>
+                <p>{characters.title}</p>
+                <img
+                  src={
+                    characters.thumbnail.path +
+                    "." +
+                    characters.thumbnail.extension
+                  }
+                  alt="characters"
+                />
+              </article>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

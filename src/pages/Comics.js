@@ -1,46 +1,71 @@
+import "./Comics.css";
+
+// STOCKAGE DATA
 import { useState, useEffect } from "react";
+// UTILISATION DES ROUTES
 import axios from "axios";
 
-const Comics = () => {
+const Comics = ({ search, setSearch }) => {
   // FUNCTION STATE POUR STOCKAGE
   const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState();
+  // SETISLOADING PAR DEFAUT : TRUE
+  const [isLoading, setIsLoading] = useState(true);
 
-  // CETTE REQUETE : LISTE DES CHARACTERS "THUMBNAIL"
+  // CETTE REQUETE : LISTE DES COMICS PAR "THUMBNAIL" = URL(PATH) + EXTENSION(.JPG)
   useEffect(() => {
-    // DECLARATION DE FONCTION FAISANT LA REQUETE VIA UNE AUTRE FONCTION (FCT USEEFFECT PAS ASYNC)
+    // DECLARATION FONCTION ASYNC FAISANT REQUETE (FONCTION USEEFFECT PAS ASYNC)
     const fetchData = async () => {
       // TRY CATCH EN CAS DE REQUETE KO
       try {
-        // DECLARATION DE LA VARIABLE RESPONSE AVEC CLE RECHERCHE TITLE FONCTIONNE PAS
-        const response = await axios.get("http://localhost:4000/Comics");
-        // VERIFICATION AVEC console.log(response.data);
+        // DECLARATION DE LA VARIABLE RESPONSE AVEC CLE ID
+        const response = await axios.get("http://localhost:3000/Comics");
+        // VERIFICATION AVEC console.log(response.data); OK AVEC BDD
         // STOCKAGE DU RESULTAT DANS DATA
         setData(response.data);
-        // METTRE ISLOADING A FALSE
+        // CHARGEMENT OK : ISLOADING FALSE
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
       }
     };
+    // RECUPERATION DATA
     fetchData();
   }, []);
+  // CHARGEMENT ENCOURS : ISLOADING TRUE + MESSAGE LOADING
+
   return isLoading ? (
     <p>Loading ...</p>
   ) : (
     <div>
+      <div>
+        {/* BARRE DE RECHERCHE SUR MOT CLE */}
+        <input
+          className="searchButton"
+          // ON RECUPERE LA VALEUR AFFICHÉE
+          value={search}
+          type="text"
+          placeholder="Recherche ..."
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
+      </div>
       {/* RECUPERATION DU DATA VIA LA CLE ID SOUS FORME DE TABLEAU PAR CARACTER */}
-      {data.results.map((comics) => {
-        return (
-          <article key={comics._id}>
-            <p>{comics.title}</p>
-            <img
-              src={comics.thumbnail.path + "." + comics.thumbnail.extension}
-              alt="comics"
-            />
-          </article>
-        );
-      })}
+      <div classname="container">
+        {data.results.map((comics) => {
+          return (
+            <div>
+              <article key={comics._id}>
+                <p>{comics.title}</p>
+                <img
+                  src={comics.thumbnail.path + "." + comics.thumbnail.extension}
+                  alt="comics"
+                />
+              </article>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -1,39 +1,27 @@
-header {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  justify-items: center;
+  width: 100vw;
 }
 .otherButton {
   background: white;
-  color: black;
   height: 40px;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   border-radius: 5px;
-  width: 120px;
-  margin-right: 5px;
+  width: 200px;
+  margin-left: 20px;
 }
-
-.descriptionButton {
+.description {
   background: #ee231f;
-  height: 40px;
+  height: 60px;
   color: white;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 500;
   border-radius: 5px;
-  width: 120px;
-  margin-left: 40px;
-  margin-right: 60px;
-}
-.searchButton {
-  background: white;
-  background-color: lightgray;
-  color: black;
-  font-size: 15px;
-  border-radius: 5px;
-  width: 350px;
-  padding: 10px;
-  margin-left: 30px;
+  width: 200px;
   margin-right: 30px;
+  margin-left: 20px;
 }
